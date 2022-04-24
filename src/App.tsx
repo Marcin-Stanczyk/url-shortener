@@ -1,25 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Routes, Route, Link } from "react-router-dom";
+import { Col, Container, Nav, Navbar, Row } from "react-bootstrap";
+import HistoryScreen from "./pages/History";
+import HomeScreen from "./pages/Home";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Container>
+        <Row>
+          <Col>
+            <nav>
+              <Navbar expand='lg'>
+                <Navbar.Brand as={Link} to='/'>
+                  URL Shortener
+                </Navbar.Brand>
+                <Navbar.Collapse>
+                  <Nav className='me-auto'>
+                    <Nav.Link as={Link} to='/history'>
+                      History
+                    </Nav.Link>
+                  </Nav>
+                </Navbar.Collapse>
+              </Navbar>
+            </nav>
+          </Col>
+        </Row>
+      </Container>
+      <Routes>
+        <Route path='/' element={<HomeScreen />} />
+        <Route path='history' element={<HistoryScreen />} />
+      </Routes>
+    </>
   );
 }
 
